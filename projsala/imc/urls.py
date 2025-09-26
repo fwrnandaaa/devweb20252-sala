@@ -5,5 +5,7 @@ from . import views
 urlpatterns=[
     path('',views.index,name='index'),
     path('nome/',views.nome,name='nome'),
-    path('tabuada/tres/',views.tabuada_tres,name='tabuada_tres'),
+    path('tabuada/<int:numero>/',views.tabuada,name='tabuada'),
+    path("calcular/", views.calcular_imc, name="calcular_imc" ),
+    #path('calcular/<int:altura>/<int:peso>/',views.calcular_imc,name='calcular_imc')
 ]
