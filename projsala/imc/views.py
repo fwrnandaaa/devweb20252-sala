@@ -20,7 +20,7 @@ def calcular_imc(request):
         classificacao = 'Obesidade'
     contexto= {
         'imc': imc,
-        'class': classificacao,
+        'classificacao': classificacao,
         'altura': altura,
         'peso': peso,
     }
