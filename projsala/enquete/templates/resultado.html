@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Resultado da Enquete</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+</head>
+<body>
+    <section class="section">
+        <div class="container">
+            <h1 class="title">Resultado da Enquete</h1>
+            <div class="box">
+                <p class="mb-4">{{pergunta}}</p>
+                <table class="table is-fullwidth is-striped">
+                    <thead>
+                        <tr>
+                            <th>Alternativa</th>
+                            <th>Votos</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{alternativa1}}</td>
+                            <td>{{ voto1 }}</td>
+                        </tr>
+                        <tr>
+                            <td>{{alternativa2}}</td>
+                            <td>{{ voto2 }}</td>
+                        </tr>
+                        <tr>
+                            <td>{{alternativa3}}</td>
+                            <td>{{ voto3 }}</td>
+                        </tr>
+                        <tr>
+                            <td>{{alternativa4}}</td>
+                            <td>{{ voto4 }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="notification is-info mt-4">
+                    Total de votos: <strong>{{ total_votos }}</strong>
+                </div>
+                <a href="/" class="button is-link mt-2">Voltar</a>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
