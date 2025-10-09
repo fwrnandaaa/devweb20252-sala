@@ -17,7 +17,7 @@ def home(request):
               'alternativa2':alternativa2,
               'alternativa3':alternativa3,
               'alternativa4':alternativa4}
-    return render(request,'home.html',contexto)
+    return render(request,'enquete/index.html',contexto)
 def votar(request):
     global voto1,voto2,voto3,voto4
     alternativa=request.GET.get('alternativa')
@@ -40,4 +40,4 @@ def votar(request):
               'voto3':voto3,
               'voto4':voto4,
               'total_votos':total_votos}
-    return render(request,'resultado.html',contexto)
+    return render(request,'enquete/resultado.html',contexto)

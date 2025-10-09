@@ -8,12 +8,13 @@
 </head>
 <body>
     <header>
-        <h1 class="title">Calculadora de IMC</h1>
+        <h1 class="title">Calculadora de IMC - V2</h1>
     </header>
     <main>
         <section class="section">
             <div class="container">
-                <form id="imc-form"  action="calcular/">
+                <form id="imc-form"  action="{% url 'imc:calcular_imc' %}" method="post">
+                    {% csrf_token %}
                     <label class="label">Altura (m):</label>
                     <div class="control">
                         <input type="number" id="altura" name="altura" step="0.01" class="input" required>
