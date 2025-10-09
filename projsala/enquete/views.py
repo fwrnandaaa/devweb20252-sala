@@ -1,43 +1,30 @@
 from django.shortcuts import render
-
+from .services import  EnqueteService
 # Create your views here.
 
-pergunta="Qual seu animal favorito?"
-alternativa1="Cachorro"
-alternativa2="Gato"
-alternativa3="Pássaro"
-alternativa4="Peixe"
-voto1=0
-voto2=0
-voto3=0
-voto4=0
+enquete = EnqueteService.criar_enquete()
+
+
 def home(request):
-    contexto={'pergunta':pergunta,
-              'alternativa1':alternativa1,
-              'alternativa2':alternativa2,
-              'alternativa3':alternativa3,
-              'alternativa4':alternativa4}
+    contexto={'pergunta':enquete.pergunta.texto,
+              'alternativa1':enquete.pergunta.opcoes[0].texto,
+              'alternativa2':enquete.pergunta.opcoes[1].texto,
+              'alternativa3':enquete.pergunta.opcoes[2].texto,
+              'alternativa4':enquete.pergunta.opcoes[3].texto}
     return render(request,'enquete/index.html',contexto)
 def votar(request):
-    global voto1,voto2,voto3,voto4
-    alternativa=request.GET.get('alternativa')
-    if alternativa==alternativa1:
-        voto1+=1
-    elif alternativa==alternativa2:
-        voto2+=1
-    elif alternativa==alternativa3:
-        voto3+=1
-    elif alternativa==alternativa4:
-        voto4+=1
-    total_votos=voto1+voto2+voto3+voto4
-    contexto={'pergunta':pergunta,
-              'alternativa1':alternativa1,
-              'alternativa2':alternativa2,
-              'alternativa3':alternativa3,
-              'alternativa4':alternativa4,
-              'voto1':voto1,
-              'voto2':voto2,
-              'voto3':voto3,
-              'voto4':voto4,
-              'total_votos':total_votos}
+    
+    alternativa=request.POST.get('alternativa')
+    EnqueteService.registrar_voto(enquete, alternativa)
+
+    contexto={'pergunta':enquete.pergunta.texto,
+              'alternativa1':enquete.pergunta.opcoes[0].texto,
+              'alternativa2':enquete.pergunta.opcoes[1].texto,
+              'alternativa3':enquete.pergunta.opcoes[2].texto,
+              'alternativa4':enquete.pergunta.opcoes[3].texto,
+              'voto1':enquete.pergunta.opcoes[0].votos,
+              'voto2':enquete.pergunta.opcoes[1].votos,
+              'voto3':enquete.pergunta.opcoes[2].votos,
+              'voto4':enquete.pergunta.opcoes[3].votos,
+              'total_votos':enquete.pergunta.total_votos()}
     return render(request,'enquete/resultado.html',contexto)
