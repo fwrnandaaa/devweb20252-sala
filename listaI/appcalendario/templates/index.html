@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendário - Formulário de Dias da Semana</title>
+    <!-- Bulma CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <!-- Font Awesome para ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <section class="section">
+        <div class="container">
+            <!-- Cabeçalho -->
+            <div class="has-text-centered mb-6">
+                <h1 class="title is-2 has-text-primary">
+                    <i class="fas fa-calendar-alt mr-3"></i>Calendário Semanal
+                </h1>
+                <h2 class="subtitle is-4 has-text-grey">
+                    Selecione os dias da semana e adicione suas anotações
+                </h2>
+            </div>
+
+            <!-- Formulário -->
+            <div class="columns is-centered">
+                <div class="column is-8">
+                    <div class="box">
+                        <form id="calendarioForm" method="post" action="{% url 'appcalendario:gerar_calendario' %}">
+                            {% csrf_token %}
+                            <!-- Dias da Semana -->
+                            <div class="field">
+                                <label class="label is-size-5">
+                                    <i class="fas fa-calendar-check mr-2"></i>Dias da Semana
+                                </label>
+                                <div class="field is-grouped is-grouped-multiline">
+                                    <div class="control">
+                                        <label class="checkbox">
+                                            <input type="checkbox" name="dias" value="segunda" class="mr-2">
+                                            <span class="tag is-light is-medium">
+                                                <i class="fas fa-calendar-day mr-2"></i>Segunda-feira
+                                            </span>
+                                        </label>
+                                    </div>
+                                    <div class="control">
+                                        <label class="checkbox">
+                                            <input type="checkbox" name="dias" value="terca" class="mr-2">
+                                            <span class="tag is-light is-medium">
+                                                <i class="fas fa-calendar-day mr-2"></i>Terça-feira
+                                            </span>
+                                        </label>
+                                    </div>
+                                    <div class="control">
+                                        <label class="checkbox">
+                                            <input type="checkbox" name="dias" value="quarta" class="mr-2">
+                                            <span class="tag is-light is-medium">
+                                                <i class="fas fa-calendar-day mr-2"></i>Quarta-feira
+                                            </span>
+                                        </label>
+                                    </div>
+                                    <div class="control">
+                                        <label class="checkbox">
+                                            <input type="checkbox" name="dias" value="quinta" class="mr-2">
+                                            <span class="tag is-light is-medium">
+                                                <i class="fas fa-calendar-day mr-2"></i>Quinta-feira
+                                            </span>
+                                        </label>
+                                    </div>
+                                    <div class="control">
+                                        <label class="checkbox">
+                                            <input type="checkbox" name="dias" value="sexta" class="mr-2">
+                                            <span class="tag is-light is-medium">
+                                                <i class="fas fa-calendar-day mr-2"></i>Sexta-feira
+                                            </span>
+                                        </label>
+                                    </div>
+                                    <div class="control">
+                                        <label class="checkbox">
+                                            <input type="checkbox" name="dias" value="sabado" class="mr-2">
+                                            <span class="tag is-primary is-medium">
+                                                <i class="fas fa-calendar-week mr-2"></i>Sábado
+                                            </span>
+                                        </label>
+                                    </div>
+                                    <div class="control">
+                                        <label class="checkbox">
+                                            <input type="checkbox" name="dias" value="domingo" class="mr-2">
+                                            <span class="tag is-primary is-medium">
+                                                <i class="fas fa-calendar-week mr-2"></i>Domingo
+                                            </span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                    
+                            <div class="field mt-5">
+                                <label class="label is-size-5">
+                                    <i class="fas fa-sticky-note mr-2"></i>Matérias para Estudar
+                                </label>
+                                <div class="control">
+                                    <textarea 
+                                        id="materias"
+                                        name="materias" 
+                                        class="textarea" 
+                                        placeholder="Matérias para estudar..."
+                                        rows="6">
+                                    </textarea>
+                                </div>
+                                <p class="help">Registre as matérias, separadas por vírgulas</p>
+                            </div>
+
+                            <!-- Botões de ação -->
+                            <div class="field is-grouped is-grouped-centered mt-6">
+                                <div class="control">
+                                    <button type="submit" class="button is-primary is-large">
+                                        <span class="icon">
+                                            <i class="fas fa-paper-plane"></i>
+                                        </span>
+                                        <span>Enviar</span>
+                                    </button>
+                                </div>
+                                <div class="control">
+                                    <button type="button" id="limparBtn" class="button is-light is-large">
+                                        <span class="icon">
+                                            <i class="fas fa-eraser"></i>
+                                        </span>
+                                        <span>Limpar</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+           
+        </div>
+    </section>
+
+  
+
+    <style>
+        /* Estilos personalizados */
+        .checkbox {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .checkbox:hover .tag {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .textarea:focus {
+            border-color: #3273dc;
+            box-shadow: 0 0 0 0.125em rgba(50, 115, 220, 0.25);
+        }
+
+        .tag.is-hovered {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        /* Animação suave para o resultado */
+        #resultado {
+            animation: fadeInUp 0.5s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</body>
+</html>
