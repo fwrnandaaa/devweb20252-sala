@@ -13,7 +13,11 @@
                 <thead>
                     <tr>
                         {% for dia in dias %}
-                            <th>{{ dia }}</th>
+                            {% if dia == "segunda" %}
+                                <th>Segunda-feira</th>
+                            {% else %}
+                                <th>{{ dia }}</th>
+                            {% endif %}
                         {% endfor %}
                     </tr>
                 </thead>
@@ -24,7 +28,7 @@
                                 {% if materias %}
                                     <ul>
                                         {% for materia in materias %}
-                                            <li>{{ materia }}</li>
+                                            <li>{{forloop.counter}}-{{ materia }}</li>
                                         {% endfor %}
                                     </ul>
                                 {% else %}
