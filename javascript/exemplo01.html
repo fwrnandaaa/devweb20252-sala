@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exemplo 01</title>
+</head>
+<body>
+    <ul id="cursos">
+        <li>Teste 1</li>
+    </ul>
+</body>
+<script>
+    const cursos=["HTML5","CSS3","JavaScript","Python","Django"];
+    let listaCursos=document.getElementById("cursos");
+    for(let i=0;i<cursos.length;i++){
+        let item=document.createElement("li");
+        item.textContent=cursos[i];
+        listaCursos.appendChild(item);
+    }
+</script>
+</html>
