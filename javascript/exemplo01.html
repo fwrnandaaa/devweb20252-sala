@@ -9,14 +9,37 @@
     <ul id="cursos">
         <li>Teste 1</li>
     </ul>
+    <label for="curso">Curso:</label>
+    <input type="text" name="curso" id="curso">
+    <button onclick="adicionar_curso_input()">Adicionar Curso</button>
+    <button onclick="adicionar_lista_curso()">Adicionar Lista</button>
+    
 </body>
 <script>
-    const cursos=["HTML5","CSS3","JavaScript","Python","Django"];
-    let listaCursos=document.getElementById("cursos");
-    for(let i=0;i<cursos.length;i++){
+
+    const adicionar_lista_curso=()=>{
+        const cursos=["HTML5","CSS3","JavaScript","Python","Django"];
+        let listaCursos=document.getElementById("cursos");
+        listaCursos.innerHTML="";
+        for(let i=0;i<cursos.length;i++){
+            let item=document.createElement("li");
+            item.textContent=cursos[i];
+            listaCursos.appendChild(item);
+        }
+    }
+    const adicionar_curso_input=()=>{
+        const curso=document.getElementById("curso").value;
+        if (curso==""){
+            alert("O campo curso não pode estar vazio");
+            return;
+        }
+        let listaCursos=document.getElementById("cursos");
         let item=document.createElement("li");
-        item.textContent=cursos[i];
+        item.textContent=curso;
         listaCursos.appendChild(item);
     }
+    
+
+    
 </script>
 </html>
