@@ -20,4 +20,5 @@ class Gato(models.Model):
     disponivel=models.BooleanField(default=True) #defalt = True significa que assim que o gato for cadastrado ele é marcado como disponivel
     raca=models.ForeignKey(Raca,on_delete=models.CASCADE,related_name='gatos') # atributo 'raca' é chave estrangeira da classe Raca;
     # on_delete=models.CASCADE = ao deletar uma raça todos os gartos relacionados a essa raça serao deletados; 
-    # related_name injeta atributo 'gatos' na classe Raca, oque facilita pesquisa por filtragem
+    # related_name injeta atributo 'gatos' na classe Raca, o que facilita pesquisa por filtragem
+    foto=models.ImageField(upload_to='fotos_gatos/',blank=True,null=True) #upload_to = pasta onde as fotos serao salvas; imagefield = armazena o caminho para o arquivo
